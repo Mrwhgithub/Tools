@@ -10,23 +10,33 @@
 
 USING_NS_CC;
 using namespace std;
-
-class ToolFunc
+namespace tools
 {
-public:
-	ToolFunc();
-	~ToolFunc();
-	static int random(int start,int end);
-	static void WStrToUTF8(std::string& dest, const wstring& src);//把字符串转化成UTF_8格式
-	//static int getRow(CCPoint &point,const int size);//计算点在二维表中的行数
-	//static int getColumn(CCPoint &point,const int size);//计算点在二维表中的列数
-	static float getAngle(CCPoint startPos,CCPoint endPos);//计算技能发射角度
-	static std::string getFilePath(const char *pFileName);
-	static long getCurrentTime();
-	//pJson必须为匿名对象
-	static bool jsonEncryptFileSave(json_t* pJson,const char* pFileName);
-	//验证签名，并返回json
-	static json_t* jsonEncryptFileRead(const char* pFileName);
-	static json_t* readPackageJson( const char* file ,bool doVerify = false);
-	static bool getNumFromString(const char *str,vector <int> &numVec);//从字符串中提取数字()
-};
+	class ToolFunc
+	{
+	public:
+		ToolFunc();
+		~ToolFunc();
+		static int random(int start, int end);
+		static void WStrToUTF8(std::string& dest, const wstring& src);//把字符串转化成UTF_8格式
+		//static int getRow(CCPoint &point,const int size);//计算点在二维表中的行数
+		//static int getColumn(CCPoint &point,const int size);//计算点在二维表中的列数
+		static float getAngle(CCPoint startPos, CCPoint endPos);//计算技能发射角度
+		static std::string getFilePath(const char *pFileName);
+		static long getCurrentTime();
+		static bool getNumFromString(const char *str, vector <int> &numVec);//从字符串中提取数字()
+
+
+		static bool verifyEmailAddress(const std::string& email);
+		static bool verifyPhone(const std::string& phone);
+		static bool verifyChinese(const std::string& word);
+		static bool verifyNumber(const std::string& word);
+		static bool verifyNumberAndEnglish(const std::string& word);
+		static std::string base64urlencode(const std::string &str);
+		static bool checkKeyWords(const string &filePath, const string &scr);
+		static std::stack<BUBBLE_ITEM> parseChatMsg(const std::string &msg);
+		static std::vector<std::string> splitString(const string& s, const string& delim);
+
+		const static char* changeNumberFormat(string number);
+	};
+}
